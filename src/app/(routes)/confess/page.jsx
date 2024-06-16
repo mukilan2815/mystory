@@ -11,7 +11,7 @@ const Confess = () => {
   const [confessContent, setConfessContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [confessions, setConfessions] = useState(
-    JSON.parse(localStorage.getItem('confessions')) || []
+    JSON.parse(localStorage.getItem('confessions')) || [],
   );
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Confess = () => {
     setConfessions((prevConfessions) => [...prevConfessions, newConfession]);
     localStorage.setItem(
       'confessions',
-      JSON.stringify([...confessions, newConfession])
+      JSON.stringify([...confessions, newConfession]),
     );
     try {
       const response = await axios.post('/api/confession', {
@@ -54,7 +54,7 @@ const Confess = () => {
 
   const removeConfession = (id) => {
     const updatedConfessions = confessions.filter(
-      (confession) => confession.id !== id
+      (confession) => confession.id !== id,
     );
     setConfessions(updatedConfessions);
     localStorage.setItem('confessions', JSON.stringify(updatedConfessions));
